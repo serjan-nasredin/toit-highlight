@@ -12,19 +12,32 @@ function toit(hljs) {
 		variants: [
 			{begin: /'/, end: /'/},
 			{begin: /"/, end: /"/}
-		],
-		contains: [
-			CHAR_INLINE
 		]
 	];
 
-	const COMMENT1 = [
+	const NUMBERS = {
+		className: 'number',
+		variants: [
+			{
+				begin: '\\b(0b[01\']+'
+			},
+			{
+				begin: '(-?)\\b([\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)((ll|LL|l|L)(u|U)?|(u|U)(ll|LL|l|L)?|f|F|b|B)'
+			},
+			{
+				begin: '(-?)(\\b0[xX][a-fA-F0-9\']+|(\\b[\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)([eE][-+]?[\\d\']+)?)'
+			}
+		],
+		relevance: 0
+	};
+
+	const COMMENT_SINGLE_LINE = [
 		className: 'comment',
 		begin: '//.*',
 		illegal: '\\n'
 	];
 
-	const COMMENT2 = [
+	const COMMENT_MULTI_LINE = [
 		className: 'comment',
 		begin: '/*', end: '*/'
 	];
@@ -69,7 +82,7 @@ function toit(hljs) {
 		'false'
 	];
 
-	const TOIT_KEYWORDS = {
+	const KEYWORD = {
 		type: RESERVED_TYPES,
 		keyword: RESERVED_KEYWORDS,
 		literal: LITERALS
@@ -78,13 +91,17 @@ function toit(hljs) {
 	return {
 		name: 'Toit'
 		aliases: ['toit'],
-		keyword: TOIT_KEYWORDS
-		illegal: /()/,
+		keyword: KEYWORD
+		illegal: /(\/\*|\/\/)/,
 		contains: [
-			STRING, STRING_MULTILINE,
-			COMMENT1, COMMENT2, COMMENT_ERROR,
+			STRING,
+			COMMENT_SINGLE_LINE, COMMENT_MULTI_LINE, COMMENT_ERROR,
 			OPERATOR, RESERVED_KEYWORDS,
-			RESERVED_TYPES, LITERALS
+			RESERVED_TYPES, LITERALS,
 		]
+		exports: {
+			strings: STRING,
+			keywords: KEYWORD
+		}
 	};
 }
