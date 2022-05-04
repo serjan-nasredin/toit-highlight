@@ -8,11 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/snxx-lppxx/toit-highlight.git"
+    "url": "git+https://github.com/snxx-lppxx/toit-highlight.git"
   },
   "keywords": [
     "toit",
     "highlight.js",
+    "hljs",
     "highlightjs",
     "syntax"
   ],
@@ -21,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/snxx-lppxx/toit-highlight/issues"
   },
-  "homepage": "https://github.com/snxx-lppxx/toit-highlight#readme"
+  "homepage": "https://github.com/snxx-lppxx/toit-highlight#readme",
+  "dependencies": {
+    "highlight.js": "^11.5.1"
+  },
+  "devDependencies": {
+    "highlight.js": "^11.5.1"
+  }
 }
