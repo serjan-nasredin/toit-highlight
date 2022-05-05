@@ -1,23 +1,23 @@
-<span class="hljs">class</span> <span class="hljs">MegaGreeter</span>:
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MegaGreeter</span>:
   names := []
 
-  <span class="hljs">constructor</span> name="<span class="hljs-string">World</span>":
+  <span class="hljs-keyword">constructor</span> name=<span class="hljs-string">&quot;World&quot;</span>:
     names.add name
 
-  <span class="hljs">say_hi</span>:
-    <span class="hljs">// Greet everyone individually!</span>
-    names.do: <span class="hljs">print</span> "<span class="hljs">Hello $it!</span>"
-  <span class="hljs">say_bye</span>:
-    everyone := names.<span class="hljs">join</span> "<span class="hljs">, </span>"
-    <span class="hljs">print</span> "<span class="hljs">Bye $everyone, come back soon.</span>"
+  <span class="hljs-title function_">say_hi</span>:
+    <span class="hljs-comment">// Greet everyone individually!</span>
+    names.do: <span class="hljs-built_in">print</span> <span class="hljs">&quot;Hello $it!&quot;</span>
+  <span class="hljs-title function_">say_bye</span>:
+    everyone := names.<span class="hljs-built_in">join</span> <span class="hljs-string">&quot;, &quot;</span>
+    <span class="hljs-built_in">print</span> <span class="hljs-string">&quot;Bye $everyone, come back soon.&quot;</span>
 
-<span class="hljs">main</span>:
+<span class="hljs-title function_">main</span>:
   greeter := MegaGreeter
   greeter.say_hi
   greeter.say_bye
 
-  greeter.names.add "<span class="hljs">Lars</span>"
-  greeter.names.add "<span class="hljs">Kasper</span>"
-  greeter.names.add "<span class="hljs">Rikke</span>"
+  greeter.names.add <span class="hljs-string">&quot;Lars&quot;</span>
+  greeter.names.add <span class="hljs-string">&quot;Kasper&quot;</span>
+  greeter.names.add <span class="hljs-string">&quot;Rikke&quot;</span>
   greeter.say_hi
   greeter.say_bye

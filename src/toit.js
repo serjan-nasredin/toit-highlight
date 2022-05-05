@@ -9,21 +9,17 @@
 
 /* @type LanguageFn */
 export default function(hljs) {
-    const regex = hljs.regex;
-
-    /* Documentation: https://docs.toit.io/language/strings#escaped-characters */
-    const CHARACTER_ESCAPES = "\\\\(x[0-9A-Fa-f]){2}|u[0-9A-Fa-f]{4,8}|[0-7]{3}|\\S";
     const STRING = {
-        className = "string",
+        className: "string",
         variants: [
-            {begin: /'/, end: /'/},
-            {begin: /"/, end: /"/}
+            {begin: /\'/, end: /\'/},
+            {begin: /\"/, end: /\"/}
         ]
     };
-
+    
     const RESERVED_KEYWORDS = [
         "for",
-        "while"
+        "while",
         "if",
         "else",
         "static",
@@ -51,12 +47,12 @@ export default function(hljs) {
         "super"
     ];
 
-    const RESERVED_TYPES = {
+    const RESERVED_TYPES = [
         "string",
         "bool",
         "int",
         "float"
-    };
+    ];
 
     const LITERALS = [
         "true",
@@ -64,9 +60,23 @@ export default function(hljs) {
         "null"
     ];
 
-    const COMMENT = {
-        className: "comment",
-    };
+    const COMMENT = hljs.inherit(
+        hljs.COMMENT(null, null),
+        {
+            variants: [
+                /* SINGLE LINE COMMENT */
+                {
+                    begin: /\/\//,
+                    end: /$/
+                },
+                /* MULTI LINE COMMENT */
+                {
+                    begin: /\/*/,
+                    end: /\*\//
+                }
+            ]
+        }
+    );
 
     const NUMBER = {
         className: "number",
@@ -88,13 +98,13 @@ export default function(hljs) {
     return {
         name: "Toit",
         aliases: ["toit"],
-        unicodeRegex: true,
+        /* unicodeRegex: true,*/
         keywords: KEYWORDS,
         illegal: /(<\/|->|\?|=>)/,
         contains: [
             NUMBER,
             STRING,
-            COMMENT_TYPE
+            COMMENT
         ]
     };
 }
